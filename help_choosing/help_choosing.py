@@ -20,41 +20,61 @@ def czytajdane():
     """Funkcja pobiera i wyświetla dane z bazy."""
     cur.execute(
         """
-        SELECT id,tytul,bohater,miejsce FROM fantastyka
+        SELECT * FROM fantastyka
         """)
     ksiazki = cur.fetchall()
     for pozycja in ksiazki:
         print(pozycja['id'], pozycja['tytul'], pozycja['bohater'], pozycja['miejsce'])
     print()
 
-def czytajdane2():
-    """Funkcja pobiera i wyświetla dane z bazy."""
-    cur.execute(
-        """
-        SELECT id,tytul,bohater,miejsce FROM przygoda
-        """)
-    ksiazki = cur.fetchall()
-    for pozycja in ksiazki:
-        print(pozycja['id'], pozycja['tytul'], pozycja['bohater'], pozycja['miejsce'])
-    print()
 
-def czytajdane3():
-    """Funkcja pobiera i wyświetla dane z bazy."""
+
+def bohater(hero):
     cur.execute(
         """
-        SELECT id,tytul,bohater,miejsce FROM kryminal
-        """)
+        SELECT bohater FROM fantastyka  WHERE bohater = ?
+        """, (hero,) )
     ksiazki = cur.fetchall()
     for pozycja in ksiazki:
-        print(pozycja['id'], pozycja['tytul'], pozycja['bohater'], pozycja['miejsce'])
+        print(pozycja['bohater'])
+   
+    cur.execute(
+        """
+        SELECT bohater FROM przygoda WHERE bohater=?
+        """, (hero,) )
+    ksiazki = cur.fetchall()
+    for pozycja in ksiazki:
+        print(pozycja['bohater'])
     print()
     
 
 
-czytajdane()
-czytajdane2()
-czytajdane3()
 
+
+
+print ("Witaj, ten program pomoże Tobie w wyborze książki ");
+print ("######################################################");
+#gatunek = input("Podaj numer gatunku, który Ciebie interesuje: ");
+
+print ("Wybierz:");
+print ("1:dziewczyna 2:chłopak 3:kobieta 4:mężczyzna");
+print ("5:dzieci 6:postacie fantastyczne 7:wielu 8:zwierzę");
+print();
+hero_nr = input("Wybierz numer odpowiadający dla bohatera: ");
+
+
+if hero_nr == 1:
+    hero="dziewczyna";
+elif hero_nr == 2:
+    hero="chłopak";
+
+print(hero);
+
+
+
+#print("Oto Twój wybór, życzymy miłej lektury. ");
+
+#bohater(hero)
 
 
 
