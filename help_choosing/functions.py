@@ -13,17 +13,6 @@ cur = con.cursor()
 
 
 # pobieranie danych z bazy
-def czytajdane():
-    """Funkcja pobiera i wyświetla dane z bazy."""
-    cur.execute(
-        """
-        SELECT * FROM fantastyka
-        """)
-    ksiazki = cur.fetchall()
-    for pozycja in ksiazki:
-        print(pozycja['id'], pozycja['tytul'], pozycja['bohater'], pozycja['miejsce'])
-    print()
-
 
 def SearchInFantastykaTable(hero, place, time, topic): 
     if hero == "obojętnie":
@@ -35,15 +24,52 @@ def SearchInFantastykaTable(hero, place, time, topic):
            for pozycja in ksiazki:
                 print(pozycja['tytul'], pozycja['bohater'], pozycja['miejsce'],pozycja['czasy'],pozycja['motyw'],pozycja['liczba_tomow'])
            print()
-    else:
+    elif place == "obojętnie":
            cur.execute(
                         """
-                        SELECT tytul, bohater, miejsce, czasy, motyw, liczba_tomow FROM fantastyka WHERE bohater= ? AND  miejsce= ? AND czasy= ? AND  motyw= ?
-                        """, (hero, place, time, topic ))
+                        SELECT tytul, bohater, miejsce, czasy, motyw, liczba_tomow FROM fantastyka WHERE bohater= ? AND czasy= ? AND  motyw= ?
+                        """, (hero, time, topic ))
            ksiazki = cur.fetchall()
            for pozycja in ksiazki:
                 print(pozycja['tytul'], pozycja['bohater'], pozycja['miejsce'],pozycja['czasy'],pozycja['motyw'],pozycja['liczba_tomow'])
            print()
+    elif time == "obojętnie":
+         cur.execute(
+                        """
+                        SELECT tytul, bohater, miejsce, czasy, motyw, liczba_tomow FROM fantastyka WHERE bohater= ? AND  miejsce= ? AND  motyw= ?
+                        """, (hero, place, topic ))
+         ksiazki = cur.fetchall()
+         for pozycja in ksiazki:
+                print(pozycja['tytul'], pozycja['bohater'], pozycja['miejsce'],pozycja['czasy'],pozycja['motyw'],pozycja['liczba_tomow'])
+         print()
+    elif topic == "obojętnie":
+         cur.execute(
+                        """
+                        SELECT tytul, bohater, miejsce, czasy, motyw, liczba_tomow FROM fantastyka WHERE bohater= ? AND  miejsce= ? AND czasy= ? 
+                        """, (hero, place, time ))
+         ksiazki = cur.fetchall()
+         for pozycja in ksiazki:
+                print(pozycja['tytul'], pozycja['bohater'], pozycja['miejsce'],pozycja['czasy'],pozycja['motyw'],pozycja['liczba_tomow'])
+         print()
+    elif hero == "obojętnie" and place == "obojętnie" and time  == "obojętnie" and topic  == "obojętnie":
+         cur.execute(
+                        """
+                        SELECT tytul, bohater, miejsce, czasy, motyw, liczba_tomow FROM fantastyka
+                        """)
+         ksiazki = cur.fetchall()
+         for pozycja in ksiazki:
+                print(pozycja['tytul'], pozycja['bohater'], pozycja['miejsce'],pozycja['czasy'],pozycja['motyw'],pozycja['liczba_tomow'])
+         print()
+    else:
+         cur.execute(
+                        """
+                        SELECT tytul, bohater, miejsce, czasy, motyw, liczba_tomow FROM fantastyka WHERE bohater= ? AND  miejsce= ? AND czasy= ? AND  motyw= ?
+                        """, (hero, place, time, topic ))
+         ksiazki = cur.fetchall()
+         for pozycja in ksiazki:
+                print(pozycja['tytul'], pozycja['bohater'], pozycja['miejsce'],pozycja['czasy'],pozycja['motyw'],pozycja['liczba_tomow'])
+         print()
+
 
         
  
