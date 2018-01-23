@@ -17,14 +17,45 @@ def warunek(genre, place_choice, hero_choice, time_choice, topic_choice, volume_
         place = place_choice;
         time = time_choice;
         topic = topic_choice;
-        SearchInFantastykaTable(hero,place,time,topic);
-
-    elif genre == "przygoda" and place == "Ameryka Północna" and hero == "chłopak" and time == "dawne" and topic == "podróż" and volume < "5":
-        print ("Wybrałeś przygodę w Ameryce, gdzie bohaterem jest chłopak a akcja dzieje się w czasach dawnych a tematem jest podróż liczba tomów jest mniejsza od 5")
-        SearchInPrzygodaTable(hero,place,time,topic);
-    elif genre == "kryminal" and place == "Ameryka Północna" and hero == "chłopak" and time == "dawne" and topic == "podróż" and volume < "5":
-        print ("Wybrałeś przygodę w Ameryce, gdzie bohaterem jest chłopak a akcja dzieje się w czasach dawnych a tematem jest podróż liczba tomów jest mniejsza od 5")
-        SearchInKryminalTable(hero,place,time,topic);
+        volume = volume_choice;
+        print();
+        SearchInFantastykaTable(hero,place,time,topic, volume);
+        print(hero);
+        print(place);
+        print(time);
+        print(topic);
+        print(genre);
+        print(volume);
+    elif genre == "przygoda" and place_choice == "różne" and hero_choice == "chłopak" and time_choice == "współczesne" and topic_choice == "podróż" and volume_choice > "5":
+       
+        hero = hero_choice;
+        place = place_choice;
+        time = time_choice;
+        topic = topic_choice;
+        volume = volume_choice;
+        print();
+        SearchInPrzygodaTable(hero,place,time,topic,volume);
+        print(hero);
+        print(place);
+        print(time);
+        print(topic);
+        print(genre);
+        print(volume);
+    elif genre == "kryminal" and place_choice == "pociąg" and hero_choice == "wielu" and time_choice == "dawne" and topic_choice == "tajemnica" and volume_choice < "5":
+       
+        hero = hero_choice;
+        place = place_choice;
+        time = time_choice;
+        topic = topic_choice;
+        volume = volume_choice;
+        print();
+        SearchInKryminalTable(hero,place,time,topic,volume);
+        print(hero);
+        print(place);
+        print(time);
+        print(topic);
+        print(genre);
+        print(volume);
       
 
 
