@@ -1,32 +1,20 @@
 #! /usr/bin/env python3
 # -*- coding: utf-8 -*-
 
+import os
+from search import *
+from check import *
 
-from functions import *
-
-
-
-def CheckGenre(genre):       
-            if genre == "fantastyka":
-                print("fantastyka");
-                return True
-                
-            elif genre == "przygoda":
-                print("przygoda");
-                return True
-            elif genre == "kryminal":
-                print("kryminal");
-                return True
-            else:
-                print("Wybierz jeden z trzech gatunków: przygoda, fantastyka, kryminal");
+def cls():
+    os.system('cls' if os.name=='nt' else 'clear')
 
 
 
-
-def warunek(genre, place_choice, hero_choice, time_choice, topic_choice, volume_choice):
-    if genre == "fantastyka": 
-        if place_choice == "miasto" or place_choice == "obojętnie" and hero_choice == "dziewczyna" or hero_choice == "obojętnie" and time_choice == "współczesne" or time_choice == "obojętnie" and topic_choice == "dystopia" or topic_choice == "obojętnie" and volume_choice < "5":
-            print ("Wybrałeś fantastykę w Europie, gdzie bohaterem jest dziewczyna a akcja dzieje się w czasach współczesnych a tematem jest mitologia liczba tomów jest większa lub równa 5")
+'''
+def warunek(place_choice, hero_choice, time_choice, topic_choice, volume_choice):
+    
+   if hero_choice == "dziewczyna" or hero_choice == "obojętnie" and place_choice == "miasto" or place_choice == "obojętnie" and time_choice == "współczesne" or time_choice == "obojętnie" and topic_choice == "dystopia" or topic_choice == "obojętnie" and volume_choice == "3" or:
+            
             hero = hero_choice;
             place = place_choice;
             time = time_choice;
@@ -34,30 +22,9 @@ def warunek(genre, place_choice, hero_choice, time_choice, topic_choice, volume_
             volume = volume_choice;
             print();
             SearchInFantastykaTable(hero,place,time,topic, volume);
+  '''  
     
-    if genre == "przygoda":
-       if place_choice == "różne" and hero_choice == "chłopak" and time_choice == "współczesne" and topic_choice == "podróż" and volume_choice > "5":
-       
-            hero = hero_choice;
-            place = place_choice;
-            time = time_choice;
-            topic = topic_choice;
-            volume = volume_choice;
-            print();
-            SearchInPrzygodaTable(hero,place,time,topic,volume);
-     
-    if genre == "kryminal":
-       if place_choice == "pociąg" and hero_choice == "wielu" and time_choice == "dawne" and topic_choice == "tajemnica" and volume_choice < "5":
-       
-            hero = hero_choice;
-            place = place_choice;
-            time = time_choice;
-            topic = topic_choice;
-            olume = volume_choice;
-            print();
-            SearchInKryminalTable(hero,place,time,topic,volume);
-    else:
-        print("Wybierz jeden z trzech gatunków: przygoda, fantastyka, kryminal");
+
       
       
 
@@ -66,52 +33,211 @@ print ("######################################################");
 print("");
 
 while True:
+   print("");
+   print ("przygoda fantastyka kryminal obojętnie");
+   print("");
    genre = input("Podaj nazwę gatunku, który Ciebie interesuje: ");
    print("");
+   cls()
    if CheckGenre(genre) == True: break
 
+if genre == "obojętnie":
+   while True:
+        print("-----------------------------------------------------------------------------------------");
+        print ("dziewczyna  chłopak    wielu ");
+        print ("zwierzę    obojętnie");
+        print("-----------------------------------------------------------------------------------------");
+        hero = input("Wybierz, kim ma być bohater ");
+        cls()
+        if CheckHero(hero) == True: break
+   while True:
+        print("-----------------------------------------------------------------------------------------");
+        print ("miasto     Ameryka Północna      wyspy       pociąg ");
+        print ("Europa      łódź podwodna       statek       różne    obojętnie");
+        print("-----------------------------------------------------------------------------------------");
+        place = input("Podaj miejsce, które ma być zawarte w poszukiwanej książce ");
+        cls()
+        if CheckPlace(place) == True: break
+        print("");
+   while True:
+        print("-----------------------------------------------------------------------------------------");
+        print ("współczesne     dawne          różne");
+        print("nieokreślone     przyszłość     obojętnie");
+        print("-----------------------------------------------------------------------------------------");
+        time = input("Napisz, w jakich czasach ma się dziać akcja ");
+        cls()
+        if CheckTime(time) == True: break
+        print("");
+   while True:
+        print("-----------------------------------------------------------------------------------------");
+        print ("podróż        przyjaźń     przygody      przeznaczenie  karykatura      mitologia       ");
+        print("sprawiedliwość tajemnica    powrotu        dystopia        mafia         morderstwo        obojętnie      ");
+        print("-----------------------------------------------------------------------------------------");
+        topic = input ("Jaki motyw powinien zostać poruszony ");
+        cls()
+        if CheckTopic(topic) == True: break
+        print("");
+   while True:
+        print("-----------------------------------------------------------------------------------------");
+        print("1   3   5   7   9   41  obojętnie")
+        print("-----------------------------------------------------------------------------------------");
+        volume = input("Z ilu tomów ma się składać seria ");
+        cls()
+        if CheckVolume(volume) == True: break
+        print("");
+   print("Oto Twój wybór z gatunku przygoda, życzymy miłej lektury. ");
+   print("");
+   SearchInPrzygodaTable(hero, place, time, topic, volume)
+
+   print("Oto Twój wybór z gatunku fantastyka, życzymy miłej lektury. ");
+   print("");
+   SearchInFantastykaTable(hero, place, time, topic, volume)
+
+   print("Oto Twój wybór z gatunku kryminał, życzymy miłej lektury. ");
+   print("");
+   SearchInKryminalTable(hero, place, time, topic, volume)
+
+if genre == "przygoda":
+    while True:
+        print("-----------------------------------------------------------------------------------------");
+        print ("dziewczyna  chłopak    wielu ");
+        print ("zwierzę    obojętnie");
+        print("-----------------------------------------------------------------------------------------");
+        hero = input("Wybierz, kim ma być bohater ");
+        cls()
+        if CheckHero(hero) == True: break
+    while True:
+        print("-----------------------------------------------------------------------------------------");
+        print ("Ameryka Północna    wyspy      różne   ");
+        print ("łódź podwodna       statek   obojętnie");
+        print("-----------------------------------------------------------------------------------------");
+        place = input("Podaj miejsce, które ma być zawarte w poszukiwanej książce ");
+        cls()
+        if CheckPlace(place) == True: break
+        print("");
+    while True:
+        print("-----------------------------------------------------------------------------------------");
+        print ("współczesne     dawne ");
+        print(" obojętnie");
+        print("-----------------------------------------------------------------------------------------");
+        time = input("Napisz, w jakich czasach ma się dziać akcja ");
+        cls()
+        if CheckTime(time) == True: break
+        print("");
+    while True:
+        print("-----------------------------------------------------------------------------------------");
+        print ("podróż        przyjaźń     przygody   ");
+        print("obojętnie      ");
+        print("-----------------------------------------------------------------------------------------");
+        topic = input ("Jaki motyw powinien zostać poruszony ");
+        cls()
+        if CheckTopic(topic) == True: break
+        print("");
+    while True:
+        print("-----------------------------------------------------------------------------------------");
+        print("1  5  9  obojętnie");
+        print("-----------------------------------------------------------------------------------------");
+        volume = input("Z ilu tomów ma się składać seria ");
+        cls()
+        if CheckVolume(volume) == True: break
+        print("");
+
+    print("Oto Twój wybór z gatunku przygoda, życzymy miłej lektury. ");
+    print("");
+    SearchInPrzygodaTable(hero, place, time, topic, volume)
+
+if genre == "fantastyka":
+   while True:
+        print("-----------------------------------------------------------------------------------------");
+        print ("dziewczyna  chłopak    wielu ");
+        print ("obojętnie");
+        print("-----------------------------------------------------------------------------------------");
+        hero = input("Wybierz, kim ma być bohater ");
+        cls()
+        if CheckHero(hero) == True: break
+   while True:
+        print("-----------------------------------------------------------------------------------------");
+        print ("miasto   różne   ");
+        print ("obojętnie");
+        print("-----------------------------------------------------------------------------------------");
+        place = input("Podaj miejsce, które ma być zawarte w poszukiwanej książce ");
+        cls()
+        if CheckPlace(place) == True: break
+        print("");
+   while True:
+        print("-----------------------------------------------------------------------------------------");
+        print ("współczesne     dawne   ");
+        print(" nieokreślone    różne   obojętnie   ");
+        print("-----------------------------------------------------------------------------------------");
+        time = input("Napisz, w jakich czasach ma się dziać akcja ");
+        cls()
+        if CheckTime(time) == True: break
+        print("");
+   while True:
+        print("-----------------------------------------------------------------------------------------");
+        print ("przyjaźń       przygody     powrotu        mitologia       ");
+        print(" różne          dystopia     przeznaczenie  karykatura   obojętnie    ");
+        print("-----------------------------------------------------------------------------------------");
+        topic = input ("Jaki motyw powinien zostać poruszony ");
+        cls()
+        if CheckTopic(topic) == True: break
+        print("");
+   while True:
+        print("-----------------------------------------------------------------------------------------");
+        print("1  3  5  7  41  obojętnie");
+        print("-----------------------------------------------------------------------------------------");
+        volume = input("Z ilu tomów ma się składać seria ");
+        cls()
+        if CheckVolume(volume) == True: break
+        print("");
+
+   print("Oto Twój wybór z gatunku fantastyka, życzymy miłej lektury. ");
+   print("");
+   SearchInFantastykaTable(hero, place, time, topic, volume)
 
 
-
-print("");
-
-print ("dziewczyna  chłopak   kobieta        mężczyzna  wielu ");
-print ("dzieci      postacie  fantastyczne   zwierzę    obojętnie");
-print("-----------------------------------------------------------------------------------------");
-hero_choice = input("Wybierz, kim ma być bohater ");
-
+if genre == "kryminal":
+   while True:
+        print("-----------------------------------------------------------------------------------------");
+        print ("dziewczyna  chłopak    wielu ");
+        print ("obojętnie");
+        print("-----------------------------------------------------------------------------------------");
+        hero = input("Wybierz, kim ma być bohater ");
+        cls()
+        if CheckHero(hero) == True: break
+   while True:
+        print("-----------------------------------------------------------------------------------------");
+        print ("Europa       Ameryka Północna ");
+        print ("pociąg       obojętnie");
+        print("-----------------------------------------------------------------------------------------");
+        place = input("Podaj miejsce, które ma być zawarte w poszukiwanej książce ");
+        cls()
+        if CheckPlace(place) == True: break
+        print("");
+   while True:
+        print("-----------------------------------------------------------------------------------------");
+        print ("współczesne     dawne   ");
+        print(" obojętnie   ");
+        print("-----------------------------------------------------------------------------------------");
+        time = input("Napisz, w jakich czasach ma się dziać akcja ");
+        cls()
+        if CheckTime(time) == True: break
+        print("");
+   while True:
+        print("-----------------------------------------------------------------------------------------");
+        print ("sprawiedliwość       tajemnica          ");
+        print(" morderstwo           mafia         obojętnie    ");
+        print("-----------------------------------------------------------------------------------------");
+        topic = input ("Jaki motyw powinien zostać poruszony ");
+        cls()
+        if CheckTopic(topic) == True: break
+        print("");
  
-'''
-    
+   print("Oto Twój wybór z gatunku kryminał, życzymy miłej lektury. ");
+   print("");
+   SearchInKryminalTable(hero, place, time, topic, volume)
 
 
-print("");
-print ("miasto  wymyślony świat   wyspy  pociąg ");
-print ("Europa  łódź podwodna   statek   Ameryka Północna różne ");
-print("-----------------------------------------------------------------------------------------");
-place_choice = input("Podaj miejsce, które ma być zawarte w poszukiwanej książce ");
-print("");
-print ("współczesne     dawne               nieokreślone");
-print("średniowiecze    postapokaliptyczne         różne");
-print("-----------------------------------------------------------------------------------------");
-time_choice = input("Napisz, w jakich czasach ma się dziać akcja ");
-print("");
-print ("podróż        przyjaźń     przeznaczenie  karykatura      mitologia     powrotu");
-print("sprawiedliwość tajemnica    powrotu        dystopia        mafia         morderstwo");
-print("-----------------------------------------------------------------------------------------");
-topic_choice = input ("Jaki motyw powinien zostać poruszony ");
-print("");
-print("1   3   5   7   9   41  obojętnie")
-print("-----------------------------------------------------------------------------------------");
-volume_choice = input("Z ilu tomów ma się składać seria ");
-print("");
-'''
-
-
-
-print("Oto Twój wybór, życzymy miłej lektury. ");
-
-#warunek(genre,place_choice,hero_choice,time_choice,topic_choice,volume_choice);
 
 
 

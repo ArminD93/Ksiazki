@@ -21,7 +21,10 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="functions.py">
+    <Compile Include="check.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="search.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="main.py" />
