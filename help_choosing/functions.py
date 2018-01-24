@@ -22,7 +22,7 @@ def SearchInFantastykaTable(hero, place, time, topic, volume):
                         """)
            ksiazki = cur.fetchall()
            for pozycja in ksiazki:
-                print(pozycja['tytul'], pozycja['bohater'], pozycja['miejsce'],pozycja['czasy'],pozycja['motyw'],pozycja['liczba_tomow'])
+                print( pozycja['tytul'], pozycja['bohater'], pozycja['miejsce'],pozycja['czasy'],pozycja['motyw'],pozycja['liczba_tomow'])
            print()
     elif hero == "obojętnie" and place == "obojętnie" and time == "obojętnie" and topic == "obojętnie":                         #parametr volume                                  != "obojętnie"
            cur.execute(
